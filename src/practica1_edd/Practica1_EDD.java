@@ -17,6 +17,9 @@ public class Practica1_EDD {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-    }
+        Principal nuevo = new Principal();
+        nuevo.setLocationRelativeTo(null);
+        nuevo.setVisible(true);
+}
     
 }
