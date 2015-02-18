@@ -6,32 +6,43 @@
 
 package practica1_edd;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author OscarPC
  */
 public class Lista_Nombres {
     
-    Lista_Nombres cabecera;
+    static Lista_Nombres cabecera;
     Lista_Nombres sig;
+    Lista_Nombres sigNodo;
     String tipo;
     boolean bandera_planta = false;
     boolean bandera_zombie = false;
     
     Lista_Nombres()
     {
-    String tipo = "cabeza";    
+    sig = null;
+    sigNodo = null;   
+    
+    }
+    
+    public static void AsignarCabecera()
+    {
     Lista_Nombres nuevo = new Lista_Nombres();
     cabecera = nuevo;
     cabecera.sig = null;
+    cabecera.sigNodo = null;
+    String tipo = "cabeza";
     }
-    
-    
     
     public void Insertar_Planta()
     {
-    tipo = "planta";
     Lista_Nombres planta = new Lista_Nombres();
+    //planta.sig = null;
+    //planta.sigNodo = null;
+    tipo = "planta";
     if(cabecera.sig == null)
     {
     cabecera.sig = planta;
@@ -52,8 +63,10 @@ public class Lista_Nombres {
     
     public void Insertar_Zombie()
     {
-    tipo = "zombie";
     Lista_Nombres zombie = new Lista_Nombres();
+    zombie.sig = null;
+    zombie.sigNodo = null;
+    tipo = "zombie";
     if(cabecera.sig == null)
     {
     cabecera.sig = zombie;

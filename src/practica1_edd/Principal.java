@@ -1,5 +1,7 @@
 package practica1_edd;
 
+import javax.swing.JPanel;
+import javax.swing.*;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,6 +19,8 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        Lista_Nombres inicio = new Lista_Nombres();
+        inicio.AsignarCabecera();
     }
 
     /**
@@ -65,6 +69,11 @@ public class Principal extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jButton2.setText("Nueva Planta");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jButton3.setText("Nuevo Zombie");
@@ -151,6 +160,32 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String nombre;
+        int cantidad;
+        Lista_Nombres planta = new Lista_Nombres();
+        planta.Insertar_Planta();
+        
+        JPanel pan = new JPanel();
+        JTextField campo1 = new JTextField(25);
+        JTextField campo2 = new JTextField(5);
+        
+        pan.add(new JLabel("Nombre: "));
+        pan.add(campo1);
+        pan.add(new JLabel("Cantidad: "));
+        pan.add(campo2);
+        
+        JOptionPane.showConfirmDialog(null, pan, "Nuevo Jugador Planta!", JOptionPane.OK_CANCEL_OPTION);
+        
+        nombre = campo1.getText();
+        cantidad = Integer.parseInt(campo2.getText());
+        
+        Nodo_Nombres_Planta nuevaplanta = new Nodo_Nombres_Planta(nombre, cantidad);
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

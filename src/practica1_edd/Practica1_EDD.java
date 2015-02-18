@@ -20,6 +20,7 @@ public class Practica1_EDD {
         Principal nuevo = new Principal();
         nuevo.setLocationRelativeTo(null);
         nuevo.setVisible(true);
-}
+        
+        }
     
 }
