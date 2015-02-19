@@ -77,6 +77,11 @@ public class Principal extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         jButton3.setText("Nuevo Zombie");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jButton4.setText("Comenzar Juego");
@@ -186,6 +191,31 @@ public class Principal extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String nombre;
+        int cantidad;
+        Lista_Nombres zombie = new Lista_Nombres();
+        zombie.Insertar_Zombie();
+        
+        JPanel pan = new JPanel();
+        JTextField campo1 = new JTextField(25);
+        JTextField campo2 = new JTextField(5);
+        
+        pan.add(new JLabel("Nombre: "));
+        pan.add(campo1);
+        pan.add(new JLabel("Cantidad: "));
+        pan.add(campo2);
+        
+        JOptionPane.showConfirmDialog(null, pan, "Nuevo Jugador Zombie!", JOptionPane.OK_CANCEL_OPTION);
+        
+        nombre = campo1.getText();
+        cantidad = Integer.parseInt(campo2.getText());
+        
+        Nodo_Nombres_Zombie nuevozombie = new Nodo_Nombres_Zombie(nombre, cantidad);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
