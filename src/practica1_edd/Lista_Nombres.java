@@ -6,7 +6,7 @@
 
 package practica1_edd;
 
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -40,9 +40,7 @@ public class Lista_Nombres {
     public void Insertar_Planta()
     {
     Lista_Nombres planta = new Lista_Nombres();
-    //planta.sig = null;
-    //planta.sigNodo = null;
-    tipo = "planta";
+    planta.tipo = "planta";
     if(cabecera.sig == null)
     {
     cabecera.sig = planta;
@@ -66,7 +64,7 @@ public class Lista_Nombres {
     Lista_Nombres zombie = new Lista_Nombres();
     zombie.sig = null;
     zombie.sigNodo = null;
-    tipo = "zombie";
+    zombie.tipo = "zombie";
     if(cabecera.sig == null)
     {
     cabecera.sig = zombie;

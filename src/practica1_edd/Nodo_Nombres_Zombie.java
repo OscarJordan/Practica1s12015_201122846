@@ -16,9 +16,11 @@ public class Nodo_Nombres_Zombie {
     int cantidad;
     Nodo_Nombres_Zombie sig;
         
-    Nodo_Nombres_Zombie(String nombre, int cantidad)
+    Nodo_Nombres_Zombie(String nombre1, int cantidad2)
     {
     sig = null;
+    cantidad = cantidad2;
+    nombre = nombre1;
     }
     
 }

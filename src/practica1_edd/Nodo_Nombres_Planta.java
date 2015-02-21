@@ -15,9 +15,11 @@ public class Nodo_Nombres_Planta {
     int cantidad;
     Nodo_Nombres_Planta sig;
         
-    Nodo_Nombres_Planta(String nombre, int cantidad)
+    Nodo_Nombres_Planta(String nombre1, int cantidad2)
     {
-    sig = null;
+        nombre = nombre1;
+        cantidad = cantidad2;
+        sig = null;
     }
         
 }
