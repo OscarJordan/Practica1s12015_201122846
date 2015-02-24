@@ -6,6 +6,8 @@
 
 package practica1_edd;
 
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -34,7 +36,9 @@ public class Lista_Nombres {
     cabecera = nuevo;
     cabecera.sig = null;
     cabecera.sigNodo = null;
-    String tipo = "cabeza";
+    String cab = "cabeza";
+    cabecera.tipo = cab;
+    
     }
     
     public void Insertar_Planta()
