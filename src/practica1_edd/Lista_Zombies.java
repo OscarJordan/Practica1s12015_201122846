@@ -6,43 +6,40 @@
 
 package practica1_edd;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author OscarPC
  */
-public class Lista_Plantas {
+public class Lista_Zombies {
     
-    static Objeto_Planta cabeza;
+    static Objeto_Zombie cabeza;
     
-    public void Lista_Plantas()
+    public void Lista_Zombie()
     {
     //cabeza = null;
     }
     
-    public static void InsertarPlanta(String path, String nombre, int defensa, int ataque, String tipo)
+    public static void InsertarZombie(String path, String nombre, int defensa, int ataque, String tipo)
     {
     
-    Objeto_Planta planta = new Objeto_Planta(path, nombre, defensa, ataque, tipo);    
+    Objeto_Zombie zombie = new Objeto_Zombie(path, nombre, defensa, ataque, tipo);    
     if(cabeza == null)
     {
-    cabeza = planta;
+    cabeza = zombie;
     
     }
     else
     {
     
-    Objeto_Planta aux;
+    Objeto_Zombie aux;
     aux = cabeza;
     while(aux.sig != null)
     {
     aux.sig = aux;
     }
-    aux.sig = planta;
+    aux.sig = zombie;
     }
     
     }
-    
     
 }

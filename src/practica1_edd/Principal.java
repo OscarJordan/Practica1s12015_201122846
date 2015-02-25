@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -25,12 +23,48 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    
+    int cantidad_zombie;
+    int cantidad_planta;
+    static String categoria;
+    
+    
     public Principal() {
         initComponents();
         Lista_Nombres inicio = new Lista_Nombres();
         inicio.AsignarCabecera();
     }
 
+    public void TextoGraficaCategorias()throws FileNotFoundException
+    {
+    try
+    {
+    FileWriter salida = null;
+    File archivo = new File("C:\\Users\\OscarPC\\Documents\\NetBeansProjects\\Practica1_EDD\\src\\Textos\\Cat.txt");
+    salida =  new FileWriter(archivo);
+
+    salida.write("digraph G");
+    salida.write("\r\n");
+    salida.write("{");
+    salida.write("\r\n");
+    
+    salida.write(categoria);
+    
+    
+   
+    
+        salida.write("\r\n");
+        salida.write("}");
+        salida.close();
+    }
+        catch(IOException e)
+        {
+        
+        
+        }
+
+    }
+    
     public void TextoGraficaJugadores() throws FileNotFoundException
     {
      String cadena = "";
@@ -109,6 +143,7 @@ public class Principal extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -204,6 +239,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jButton7.setText("jButton7");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -222,7 +264,9 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(227, 227, 227))
+                .addGap(134, 134, 134)
+                .addComponent(jButton7)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,7 +281,9 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(39, 39, 39)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton7))
                 .addContainerGap())
         );
 
@@ -252,7 +298,7 @@ public class Principal extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String nombre;
-        int cantidad;
+        
         Lista_Nombres planta = new Lista_Nombres();
         planta.Insertar_Planta();
         
@@ -268,17 +314,28 @@ public class Principal extends javax.swing.JFrame {
         JOptionPane.showConfirmDialog(null, pan, "Nuevo Jugador Planta!", JOptionPane.OK_CANCEL_OPTION);
         
         nombre = campo1.getText();
-        cantidad = Integer.parseInt(campo2.getText());
+        cantidad_planta = Integer.parseInt(campo2.getText());
         
-        Nodo_Nombres_Planta nuevaplanta = new Nodo_Nombres_Planta(nombre, cantidad);
+        Nodo_Nombres_Planta nuevaplanta = new Nodo_Nombres_Planta(nombre, cantidad_planta);
+        
+        int conta = 0;
+        //conta = cantidad_planta;
+        while(conta < cantidad_planta)
+        {
+        Ingreso_Plantas nuevo = new Ingreso_Plantas();
+        nuevo.setLocationRelativeTo(null);
+        nuevo.setVisible(true);
+        conta++;
+        }
         
         
+               
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         String nombre;
-        int cantidad;
+        
         Lista_Nombres zombie = new Lista_Nombres();
         zombie.Insertar_Zombie();
         
@@ -294,21 +351,51 @@ public class Principal extends javax.swing.JFrame {
         JOptionPane.showConfirmDialog(null, pan, "Nuevo Jugador Zombie!", JOptionPane.OK_CANCEL_OPTION);
         
         nombre = campo1.getText();
-        cantidad = Integer.parseInt(campo2.getText());
+        cantidad_zombie = Integer.parseInt(campo2.getText());
         
-        Nodo_Nombres_Zombie nuevozombie = new Nodo_Nombres_Zombie(nombre, cantidad);
+        Nodo_Nombres_Zombie nuevozombie = new Nodo_Nombres_Zombie(nombre, cantidad_zombie);
+        
+        int contador = 0;
+        //conta = cantidad_planta;
+        while(contador < cantidad_zombie)
+        {
+        Ingreso_Zombies nuevo = new Ingreso_Zombies();
+        nuevo.setLocationRelativeTo(null);
+        nuevo.setVisible(true);
+        contador++;
+        }
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        try {
+         try {
             // TODO add your handling code here:
             TextoGraficaJugadores();
+            Ingreso_Plantas.TextoPlantas();
+            Ingreso_Zombies.TextoZombies();
+            categoria = "Plantas->" + Ingreso_Plantas.cadenaplantas + "\r\n" + "Zombies->" + Ingreso_Zombies.cadenazombies;
+            TextoGraficaCategorias();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
       Dibujar.DibujarJugadores();
+      Dibujar.DibujarCategorias();
+      
+      
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        Lista_Plantas aux = null;
+        Objeto_Planta nuevo = null;
+        nuevo = aux.cabeza; 
+        //JOptionPane.showMessageDialog(null, "Nombre: " + nuevo.nombre);
+        while(nuevo != null)
+        {
+        System.out.println(nuevo.nombre);
+        nuevo = nuevo.sig;
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -352,6 +439,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

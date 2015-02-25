@@ -1,0 +1,5 @@
+digraph G
+{
+planta1;
+zombie1;
+}
