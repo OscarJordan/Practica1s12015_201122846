@@ -54,7 +54,7 @@ public class Ingreso_Zombies extends javax.swing.JFrame {
         }
         }
         
-      JOptionPane.showMessageDialog(null, "Termino bien la cadena de zombies");
+      //JOptionPane.showMessageDialog(null, "Termino bien la cadena de zombies");
     
     }
     

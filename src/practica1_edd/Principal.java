@@ -27,6 +27,9 @@ public class Principal extends javax.swing.JFrame {
     int cantidad_zombie;
     int cantidad_planta;
     static String categoria;
+    static String nomplanta;
+    static String nomzombie;
+    static int dimension;
     
     
     public Principal() {
@@ -35,7 +38,7 @@ public class Principal extends javax.swing.JFrame {
         inicio.AsignarCabecera();
     }
 
-    public void TextoGraficaCategorias()throws FileNotFoundException
+    public static void TextoGraficaCategorias()throws FileNotFoundException
     {
     try
     {
@@ -65,7 +68,7 @@ public class Principal extends javax.swing.JFrame {
 
     }
     
-    public void TextoGraficaJugadores() throws FileNotFoundException
+    public static void TextoGraficaJugadores() throws FileNotFoundException
     {
      String cadena = "";
         Lista_Nombres aux;
@@ -114,6 +117,10 @@ public class Principal extends javax.swing.JFrame {
     }
     
         salida.write("\r\n");
+        salida.write("planta->" + nomplanta + ";");
+        salida.write("\r\n");
+        salida.write("zombie->" + nomzombie + ";");
+        salida.write("\r\n");
         salida.write("}");
         salida.close();
     }
@@ -142,8 +149,6 @@ public class Principal extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -189,9 +194,19 @@ public class Principal extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jButton4.setText("Comenzar Juego");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jButton5.setText("Reiniciar Datos");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -232,20 +247,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("Graficar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        jButton7.setText("jButton7");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -254,36 +255,25 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(100, 100, 100)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(134, 134, 134)
-                .addComponent(jButton7)
-                .addGap(20, 20, 20))
+                .addGap(227, 227, 227))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton6)
-                        .addGap(39, 39, 39)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton7))
+                .addComponent(jButton1)
                 .addContainerGap())
         );
 
@@ -314,6 +304,7 @@ public class Principal extends javax.swing.JFrame {
         JOptionPane.showConfirmDialog(null, pan, "Nuevo Jugador Planta!", JOptionPane.OK_CANCEL_OPTION);
         
         nombre = campo1.getText();
+        nomplanta = campo1.getText();
         cantidad_planta = Integer.parseInt(campo2.getText());
         
         Nodo_Nombres_Planta nuevaplanta = new Nodo_Nombres_Planta(nombre, cantidad_planta);
@@ -351,6 +342,7 @@ public class Principal extends javax.swing.JFrame {
         JOptionPane.showConfirmDialog(null, pan, "Nuevo Jugador Zombie!", JOptionPane.OK_CANCEL_OPTION);
         
         nombre = campo1.getText();
+        nomzombie = campo1.getText();
         cantidad_zombie = Integer.parseInt(campo2.getText());
         
         Nodo_Nombres_Zombie nuevozombie = new Nodo_Nombres_Zombie(nombre, cantidad_zombie);
@@ -367,8 +359,10 @@ public class Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-         try {
+    
+    public static void Graficar()
+    {
+    try {
             // TODO add your handling code here:
             TextoGraficaJugadores();
             Ingreso_Plantas.TextoPlantas();
@@ -380,22 +374,21 @@ public class Principal extends javax.swing.JFrame {
         }
       Dibujar.DibujarJugadores();
       Dibujar.DibujarCategorias();
-      
-      
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    }
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        Lista_Plantas aux = null;
-        Objeto_Planta nuevo = null;
-        nuevo = aux.cabeza; 
-        //JOptionPane.showMessageDialog(null, "Nombre: " + nuevo.nombre);
-        while(nuevo != null)
-        {
-        System.out.println(nuevo.nombre);
-        nuevo = nuevo.sig;
-        }
-    }//GEN-LAST:event_jButton7ActionPerformed
+        JOptionPane.showMessageDialog(null, "No disponible! :S");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        String dim;
+        dim = JOptionPane.showInputDialog("Ingrese dimensión del tablero (NXN) X = ?: ");
+        dimension = Integer.parseInt(dim);
+        Tablero tablero = new Tablero();
+        tablero.setLocationRelativeTo(null);
+        tablero.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -438,8 +431,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

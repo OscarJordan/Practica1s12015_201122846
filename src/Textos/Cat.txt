@@ -1,5 +1,5 @@
 digraph G
 {
-planta1;
-zombie1;
+Plantas->planta1;
+Zombies->zombie1;
 }
