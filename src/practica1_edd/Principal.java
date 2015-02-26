@@ -383,7 +383,7 @@ public class Principal extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         String dim;
-        dim = JOptionPane.showInputDialog("Ingrese dimensión del tablero (NXN) X = ?: ");
+        dim = JOptionPane.showInputDialog("Ingrese dimensión del tablero (NXN) N = ?: ");
         dimension = Integer.parseInt(dim);
         Tablero tablero = new Tablero();
         tablero.setLocationRelativeTo(null);

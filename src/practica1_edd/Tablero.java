@@ -6,6 +6,10 @@
 
 package practica1_edd;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+
 /**
  *
  * @author OscarPC
@@ -13,14 +17,55 @@ package practica1_edd;
 public class Tablero extends javax.swing.JFrame {
 
     /**
+     * 
      * Creates
      */
+    public JLabel[][] matrix;
+    
     public Tablero() {
         initComponents();
         LblNomPlanta.setText("Jugador 1: " + Principal.nomplanta);
         LblNomZombie.setText("Jugador 2: " + Principal.nomzombie);
+        Matriz();
+        
     }
 
+    public void Matriz()
+    {
+    /*JLabel label = new JLabel();
+    label.setBorder(BorderFactory.createLineBorder(Color.black));
+    Pan_Tablero.add(label);*/
+        int dim;
+        dim = Principal.dimension;
+        
+     matrix = new JLabel [dim][dim];
+
+            for(int i=0; i< dim; i++){
+
+				for(int j=0; j< dim; j++){
+
+					
+
+                                        matrix[i][j] = new JLabel();
+
+                                        matrix[i][j].setVisible(true);
+
+                                        matrix[i][j].setBorder(javax.swing.BorderFactory.createLineBorder(Color.black, 1));
+
+                                        matrix[i][j].setBounds(5 +(i*43), 5 +(j*43), 40, 40);
+
+                                        matrix[i][j].setBackground(Color.green);
+
+                                        matrix[i][j].setText("");
+                                        Pan_Tablero.add(matrix[i][j]);
+
+                                        //this.getContentPane().add(matrix[i][j]);
+
+                                     }   
+
+}    
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,7 +80,9 @@ public class Tablero extends javax.swing.JFrame {
         LblNomPlanta = new javax.swing.JLabel();
         LblNomZombie = new javax.swing.JLabel();
         Pan_Planta = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         Pan_Zombie = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         Pan_Tablero = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -80,28 +127,44 @@ public class Tablero extends javax.swing.JFrame {
 
         Pan_Planta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel2.setText("Plantas");
+
         javax.swing.GroupLayout Pan_PlantaLayout = new javax.swing.GroupLayout(Pan_Planta);
         Pan_Planta.setLayout(Pan_PlantaLayout);
         Pan_PlantaLayout.setHorizontalGroup(
             Pan_PlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 122, Short.MAX_VALUE)
+            .addGroup(Pan_PlantaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         Pan_PlantaLayout.setVerticalGroup(
             Pan_PlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(Pan_PlantaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(379, Short.MAX_VALUE))
         );
 
         Pan_Zombie.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel3.setText("Zombies:");
 
         javax.swing.GroupLayout Pan_ZombieLayout = new javax.swing.GroupLayout(Pan_Zombie);
         Pan_Zombie.setLayout(Pan_ZombieLayout);
         Pan_ZombieLayout.setHorizontalGroup(
             Pan_ZombieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 124, Short.MAX_VALUE)
+            .addGroup(Pan_ZombieLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         Pan_ZombieLayout.setVerticalGroup(
             Pan_ZombieLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 303, Short.MAX_VALUE)
+            .addGroup(Pan_ZombieLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Pan_Tablero.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -149,9 +212,9 @@ public class Tablero extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Pan_Planta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Pan_Tablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                        .addGap(26, 26, 26)
                         .addComponent(Pan_Zombie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -160,7 +223,7 @@ public class Tablero extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Pan_Planta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Pan_Zombie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -207,7 +270,6 @@ public class Tablero extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Tablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -223,6 +285,8 @@ public class Tablero extends javax.swing.JFrame {
     private javax.swing.JPanel Pan_Tablero;
     private javax.swing.JPanel Pan_Zombie;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

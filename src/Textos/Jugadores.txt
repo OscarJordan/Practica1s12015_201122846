@@ -1,6 +1,6 @@
 digraph G
 {
 cabeza->planta->zombie;
-planta->planta;
-zombie->zombie;
+planta->plantita;
+zombie->zombiecito;
 }
